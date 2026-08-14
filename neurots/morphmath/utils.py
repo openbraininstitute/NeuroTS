@@ -9,7 +9,8 @@ from scipy.spatial import KDTree
 
 # The smallest representable positive number such that 1.0 + eps != 1.0
 # around 1e-7 for float32
-EPS = np.finfo(np.float32).eps
+# Kept as a Python float so that it does not downcast the float64 values it is combined with
+EPS = float(np.finfo(np.float32).eps)
 
 
 def get_random_point(D=1.0, random_generator=np.random):

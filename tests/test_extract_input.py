@@ -396,6 +396,30 @@ class TestDistributions:
         assert distr_external == distr_external_input
 
 
+def test_section_taper_null_trunk(monkeypatch):
+    """The trunk must be excluded by position, even when its own taper is null."""
+
+    class _Tree:
+        """A minimal tree whose sections are directly their own taper values."""
+
+        def __init__(self, tapers):
+            self.tapers = tapers
+
+        def iter_sections(self):
+            return iter(self.tapers)
+
+    monkeypatch.setattr(extract_input.from_diameter, "section_mean_taper", lambda section: section)
+
+    # The trunk is the first section and is always excluded
+    assert extract_input.from_diameter.section_taper(_Tree([0.5, 0.1, 0.2])) == [0.1, 0.2]
+
+    # A null taper on the trunk must not shift the exclusion onto the next section
+    assert extract_input.from_diameter.section_taper(_Tree([0.0, 0.1, 0.2])) == [0.1, 0.2]
+
+    # The null tapers of the other sections are still filtered out
+    assert extract_input.from_diameter.section_taper(_Tree([0.0, 0.1, 0.0, 0.2])) == [0.1, 0.2]
+
+
 def test_number_neurites(POPUL):
     res = extract_input.from_neurom.number_neurites(POPUL)
     assert_equal(
