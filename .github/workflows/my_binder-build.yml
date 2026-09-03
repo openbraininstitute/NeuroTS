@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: s-weigand/trigger-mybinder-build@v1
         with:
-          target-repo: BlueBrain/NeuroTS
+          target-repo: openbraininstitute/NeuroTS
           service-name: gh
           target-state: ${{github.ref_name}}
           debug: true

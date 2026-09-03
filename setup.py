@@ -50,8 +50,8 @@ setup(
     long_description_content_type="text/markdown",
     url="https://NeuroTS.readthedocs.io",
     project_urls={
-        "Tracker": "https://github.com/BlueBrain/NeuroTS/issues",
-        "Source": "https://github.com/BlueBrain/NeuroTS",
+        "Tracker": "https://github.com/openbraininstitute/NeuroTS/issues",
+        "Source": "https://github.com/openbraininstitute/NeuroTS",
     },
     license="Apache License 2.0",
     packages=find_namespace_packages(include=["neurots*"]),

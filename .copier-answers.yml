@@ -7,7 +7,7 @@ author_name: Blue Brain Project, EPFL
 copyright_license: Apache License 2.0
 copyright_year: '2022'
 distribution_name: NeuroTS
-download_url: https://github.com/BlueBrain/NeuroTS
+download_url: https://github.com/openbraininstitute/NeuroTS
 init_git: false
 maintainer: Lida Kanari (@lidakanari)
 package_name: neurots
@@ -16,12 +16,12 @@ project_description: Synthesis of artificial neurons using their topological pro
 project_name: NeuroTS
 project_url: https://NeuroTS.readthedocs.io
 repository_name: NeuroTS
-repository_namespace: BlueBrain
+repository_namespace: openbraininstitute
 repository_provider: github
 setup_codeql: false
-ssh_url: git@github.com:BlueBrain/NeuroTS.git
+ssh_url: git@github.com:openbraininstitute/NeuroTS.git
 team_name: neuromath
-tracker_url: https://github.com/BlueBrain/NeuroTS/issues
+tracker_url: https://github.com/openbraininstitute/NeuroTS/issues
 use_pyproject_toml: false
 version: 3.2.0
 
