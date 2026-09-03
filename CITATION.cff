@@ -38,7 +38,7 @@ identifiers:
   - type: doi
     value: 10.1016/j.celrep.2022.110586
     description: The DOI of the related article.
-repository-code: 'https://github.com/BlueBrain/NeuroTS'
+repository-code: 'https://github.com/openbraininstitute/NeuroTS'
 abstract: >-
   Neuronal morphologies provide the foundation for the electrical behavior of
   neurons, the connectomes they form, and the dynamical properties of the brain.
