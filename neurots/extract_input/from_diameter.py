@@ -30,13 +30,16 @@ def section_mean_taper(s):
     """Computes the mean tapering of a section."""
     min_diam = min(s.points[:, 3])
 
+    # The float32 segment values are widened to float64: computed in float32, the tapers of the
+    # sections with a constant diameter are rounded to exactly 0, which the filtering in `model`
+    # does not distinguish from a tiny non-zero taper
     di_li = sum(
-        segment_radius([s.points[i], s.points[i + 1]])
-        * segment_length([s.points[i], s.points[i + 1]])
+        float(segment_radius([s.points[i], s.points[i + 1]]))
+        * float(segment_length([s.points[i], s.points[i + 1]]))
         for i in range(len(s.points) - 1)
     )
 
-    return (di_li - min_diam * s.length) / s.length
+    return (di_li - float(min_diam * s.length)) / float(s.length)
 
 
 def terminal_diam(tree):
@@ -54,8 +57,10 @@ def terminal_diam(tree):
 def section_taper(tree):
     """Returns the tapering of the *diameters* within the sections of a tree."""
     # Exclude the trunk = first section, taper should not be x2 because it is relative
+    # It is dropped before the null tapers are filtered out, else a null trunk taper would make the
+    # first non-trunk section be dropped instead
     tapers = [section_mean_taper(s) for s in tree.iter_sections()]
-    return [taper for taper in tapers if taper][1:]
+    return [taper for taper in tapers[1:] if taper]
 
 
 def section_trunk_taper(tree):

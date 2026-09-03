@@ -7,7 +7,7 @@
 import logging
 
 import numpy as np
-from numpy.core.umath import clip
+from numpy import clip
 
 from neurots.astrocyte.tmd_utils import barcodes_greater_than_distance
 from neurots.astrocyte.tmd_utils import scale_barcode

@@ -65,11 +65,13 @@ class Soma:
             phi (list[float]): The polar angle (i.e. on the z-axis).
             theta (list[float]): The azimuthal angle (i.e. on the x-y plane).
         """
+        # float64 scalar so that the products below stay in float64 when the angles are float32
+        radius = np.float64(self.radius)
         return np.array(
             [
-                self.center[0] + self.radius * np.cos(phi) * np.sin(theta),
-                self.center[1] + self.radius * np.sin(phi) * np.sin(theta),
-                self.center[2] + self.radius * np.cos(theta),
+                self.center[0] + radius * np.cos(phi) * np.sin(theta),
+                self.center[1] + radius * np.sin(phi) * np.sin(theta),
+                self.center[2] + radius * np.cos(theta),
             ],
             dtype=np.float64,
         )
