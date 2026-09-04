@@ -1,6 +1,0 @@
-[paths]
-source_paths =
-	neurots
-	*/site-packages/neurots
-	*/neurots/neurots
-	*/NeuroTS/neurots

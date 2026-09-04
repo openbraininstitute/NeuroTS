@@ -27,7 +27,7 @@ classifiers = [
 dependencies = [
     "jsonschema>=3.0.1",
     "matplotlib>=3.4",
-    "morphio>=3.4.1,<3.5",
+    "morphio>=3.4.1,<3.4.2",
     "neurom>=3.0.2,<3.1",
     "numpy>=1.26.4,<2",
     "packaging>=20",
@@ -47,6 +47,7 @@ docs = [
     "sphinx-jsonschema",
 ]
 test = [
+    "coverage[toml]>=7",
     "dictdiffer>=0.5",
     "morph-tool>=2.9",
     "pytest-cov>=4.1",
@@ -78,6 +79,22 @@ filterwarnings = [
     "ignore:The --rsyncdir command.*:DeprecationWarning:xdist",
     "ignore:Pyarrow will become a required dependency of pandas.*:DeprecationWarning:diameter-synthesis",
 ]
+
+[tool.coverage.paths]
+source = [
+    "neurots",
+    "*/site-packages/neurots",
+    "*/neurots/neurots",
+    "*/NeuroTS/neurots",
+]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 98
 
 [tool.ruff]
 line-length = 100
