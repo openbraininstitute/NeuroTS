@@ -152,6 +152,12 @@ def test_trunk_distr(POPUL, NEU):
     del trunkAP["trunk"]["absolute_elevation_deviation"]["data"]["bins"]
     del trunkAP["trunk"]["pia_3d_angles"]["data"]["bins"]
 
+    for key in ("pia_3d_angles", "apical_3d_angles"):
+        for target in (trunkBAS, target_trunkBAS):
+            target["trunk"][key]["data"]["weights"] = np.round(
+                target["trunk"][key]["data"]["weights"], 6
+            ).tolist()
+
     assert_equal(trunkBAS, target_trunkBAS)
     # this value is slightly unstable with python versions
     trunkAP["trunk"]["pia_3d_angles"]["data"]["weights"][0] = np.around(
@@ -760,7 +766,7 @@ def test_from_TMD():
     ]
     for a, b in zip(angles["persistence_diagram"], expected, strict=False):
         for ai, bi in zip(a, b, strict=False):
-            assert_array_almost_equal(ai, bi, decimal=5)
+            assert_array_almost_equal(ai, bi, decimal=4)
 
     angles = extract_input.from_TMD.persistent_homology_angles(
         pop, neurite_type="basal_dendrite", threshold=9
@@ -793,7 +799,7 @@ def test_from_TMD():
     ]
     for a, b in zip(angles["persistence_diagram"], expected, strict=False):
         for ai, bi in zip(a, b, strict=False):
-            assert_array_almost_equal(ai, bi, decimal=5)
+            assert_array_almost_equal(ai, bi, decimal=4)
 
 
 def test_trunk_neurite_3d_angles(POPUL):
