@@ -99,4 +99,5 @@ def check_deprecated_radius(params, distrs):  # pylint: disable=unused-argument
                 "version, most of the time it's not used but if you want to retrieve the same "
                 "results as before please use the 'uniform' diameter model.",
                 FutureWarning,
+                stacklevel=2,
             )

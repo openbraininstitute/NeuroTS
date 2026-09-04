@@ -5,8 +5,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 # pylint: disable=missing-function-docstring
+from unittest.mock import Mock
+
 import numpy as np
-from mock import Mock
 
 from neurots.astrocyte.context import SpaceColonizationContext
 from neurots.astrocyte.section import SectionSpatialGrower

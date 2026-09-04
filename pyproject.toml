@@ -5,30 +5,71 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "NeuroTS"
+authors = [
+    { name = "Blue Brain Project, EPFL" },
+]
+description = "Synthesis of artificial neurons using their topological profiles package."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "jsonschema>=3.0.1",
+    "matplotlib>=3.4",
+    "morphio>=3.3.6,<4.0",
+    "neurom>=3.0,<4.0",
+    "numpy>=1.22.0,<2",
+    "packaging>=20",
+    "scipy>=1.6",
+    "tmd>=2.3.0",
+    "diameter-synthesis>=0.5.4",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+docs = [
+    "docutils<0.21",
+    "m2r2",
+    "sphinx>=8.2,<10",
+    "obi-sphinx-theme>=2.0.0",
+    "sphinx-gallery",
+    "sphinx-jsonschema",
+]
+test = [
+    "dictdiffer>=0.5",
+    "morph-tool>=2.9",
+    "pytest-cov>=4.1",
+    "pytest-html>=3.2",
+    "pytest-xdist>=2",
+    "pytest>=6.1",
+    "tqdm>=4.8.4",
+]
+
+[project.urls]
+Homepage = "https://NeuroTS.readthedocs.io"
+Tracker = "https://github.com/openbraininstitute/NeuroTS/issues"
+Source = "https://github.com/openbraininstitute/NeuroTS"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["neurots*"]
+namespaces = true
+
 [tool.setuptools_scm]
-
-[tool.black]
-line-length = 100
-target-version = [
-    "py39",
-    "py310",
-    "py311",
-    "py312",
-]
-
-[tool.pydocstyle]
-# ignore the following:
-#   - D107: Missing docstring in __init__
-add-ignore = [
-    "D107",
-]
-convention = "google"
-match = 'neurots\/.*\.py$|docs\/source\/conf\.py$|setup\.py$|examples\/.*.py$'
-
-[tool.isort]
-profile = "black"
-line_length = 100
-force_single_line = true
 
 [tool.pytest.ini_options]
 testpaths = [
@@ -38,3 +79,65 @@ filterwarnings = [
     "ignore:The --rsyncdir command.*:DeprecationWarning:xdist",
     "ignore:Pyarrow will become a required dependency of pandas.*:DeprecationWarning:diameter-synthesis",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+include = ["pyproject.toml", "neurots/**/*.py", "tests/**/*.py", "docs/source/conf.py", "examples/**/*.py"]
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "I",
+    "S",
+    "UP",
+]
+ignore = [
+    "D107",
+    "D417",
+    "S101",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = [
+    "B017",
+    "D",
+    "INP001",
+    "PLR2004",
+    "S101",
+    "SLF001",
+]
+"docs/source/conf.py" = [
+    "D",
+    "INP001",
+]
+"examples/**/*.py" = [
+    "D",
+    "INP001",
+]
+
+[tool.ruff.lint.pylint]
+max-args = 10
+max-locals = 20
+max-returns = 6
+max-branches = 13
+max-statements = 50
+max-public-methods = 60
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 100
+skip-magic-trailing-comma = false

@@ -41,6 +41,7 @@ def neurite_type_warning(key):
     warnings.warn(
         f"The '{key}' property is deprecated, please use '{key}_dendrite' instead",
         DeprecationWarning,
+        stacklevel=2,
     )
 
 
@@ -135,5 +136,5 @@ def accept_reject(
             best_p = _prob
             best_proposal = proposal
         n_tries += 1
-    warnings.warn("We could not sample from distribution, we take best sample.")
+    warnings.warn("We could not sample from distribution, we take best sample.", stacklevel=2)
     return best_proposal

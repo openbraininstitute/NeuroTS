@@ -49,18 +49,16 @@ def test_orientation_manager__constructor():
     # check that the correct names have been bound to the
     # respective method names
     for mode, method in om._modes.items():
-        assert mode == method.__name__.replace(
-            "_mode_", ""
-        ), f"Mode name mismatch: {mode} -> {method.__name__}"
+        assert mode == method.__name__.replace("_mode_", ""), (
+            f"Mode name mismatch: {mode} -> {method.__name__}"
+        )
 
     # then check that all there are no new methods that are unregistered
     str_modes = "\n".join(om._modes)
     str_expected_modes = "\n".join(expected_modes)
 
     assert om._modes == expected_modes, (
-        "Not all modes are bound.\n"
-        f"\nActual   :\n{str_modes}\n"
-        f"\nExpected :\n{str_expected_modes}\n"
+        f"Not all modes are bound.\n\nActual   :\n{str_modes}\n\nExpected :\n{str_expected_modes}\n"
     )
 
     assert set(om.mode_names) == set(expected_modes.keys())
