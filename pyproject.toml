@@ -31,7 +31,7 @@ dependencies = [
     "neurom>=3.0.2,<3.1",
     "numpy>=1.26.4,<2",
     "packaging>=20",
-    "scipy>=1.15.3,<2",
+    "scipy>=1.15.3,<1.16",
     "tmd>=2.3.0",
     "diameter-synthesis>=0.5.4",
 ]

@@ -761,8 +761,8 @@ def test_from_TMD():
             [265.9921875, 0, np.nan, np.nan, np.nan, np.nan],
         ],
     ]
-    for a, b in zip(angles["persistence_diagram"], expected):
-        for ai, bi in zip(a, b):
+    for a, b in zip(angles["persistence_diagram"], expected, strict=True):
+        for ai, bi in zip(a, b, strict=True):
             assert_array_almost_equal(ai, bi, decimal=6 if not _OLD_NUMPY else 4)
 
     angles = extract_input.from_TMD.persistent_homology_angles(
@@ -794,8 +794,8 @@ def test_from_TMD():
             [159.7980194, 0, np.nan, np.nan, np.nan, np.nan],
         ],
     ]
-    for a, b in zip(angles["persistence_diagram"], expected):
-        for ai, bi in zip(a, b):
+    for a, b in zip(angles["persistence_diagram"], expected, strict=True):
+        for ai, bi in zip(a, b, strict=True):
             assert_array_almost_equal(ai, bi, decimal=6 if not _OLD_NUMPY else 5)
 
 
