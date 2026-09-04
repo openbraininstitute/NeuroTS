@@ -72,7 +72,7 @@ def _parameters():
 
 def _distributions():
     path = _path / "bio_path_distribution.json"
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         distributions = json.load(f)
     return distributions
 

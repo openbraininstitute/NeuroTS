@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/pypi/v/neurots)](https://github.com/openbraininstitute/NeuroTS/releases)
 [![Build status](https://github.com/openbraininstitute/NeuroTS/actions/workflows/run-tox.yml/badge.svg?branch=main)](https://github.com/openbraininstitute/NeuroTS/actions)
 [![Codecov.io](https://codecov.io/github/openbraininstitute/NeuroTS/coverage.svg?branch=main)](https://codecov.io/github/openbraininstitute/NeuroTS?branch=main)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License](https://img.shields.io/badge/License-GPLv3-blue)](https://github.com/openbraininstitute/NeuroTS/blob/main/LICENSE.txt)
 [![Documentation status](https://readthedocs.org/projects/neurots/badge/?version=latest)](https://neurots.readthedocs.io/)
 [![DOI](https://img.shields.io/badge/DOI-10.1016/j.celrep.2022.110586-blue)](https://doi.org/10.1016/j.celrep.2022.110586)
