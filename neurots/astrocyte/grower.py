@@ -52,7 +52,9 @@ def _ensure_endfeet_are_reached(cell, targets):
     target_points = targets.active_points
     distances, section_indices = KDTree(termination_points, copy_data=False).query(target_points)
 
-    for distance, section_index, target_point in zip(distances, section_indices, target_points):
+    for distance, section_index, target_point in zip(
+        distances, section_indices, target_points, strict=False
+    ):
         if not np.isclose(distance, 0.0):
             L.warning(
                 "Target %s was not reached. Extending closest section to reach it.",
@@ -175,11 +177,11 @@ class AstrocyteGrower(NeuronGrower):
 
             trunk_points = self.soma_grower.add_points_from_orientations(oris)
 
-            assert len(target_ids) == len(
-                trunk_points
-            ), "Number of targets is not equal to number of orientations"
+            assert len(target_ids) == len(trunk_points), (
+                "Number of targets is not equal to number of orientations"
+            )
 
-            for target_id, trunk_point in zip(target_ids, trunk_points):
+            for target_id, trunk_point in zip(target_ids, trunk_points, strict=False):
                 neurite_params = deepcopy(parameters)
                 neurite_params["target_id"] = target_id
                 neurite_params["distance_soma_target"] = vectorial_norm(

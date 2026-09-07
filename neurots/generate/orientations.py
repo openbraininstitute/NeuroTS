@@ -135,18 +135,9 @@ class OrientationManager(OrientationManagerBase):
 
         .. code-block:: python
 
-            {
-                "mode": "use_predefined",
-                "values": {"orientations": [or1, or2, ...]}
-            }
-            {
-                "mode": "sample_pairwise_angles",
-                "values": {}
-            }
-            {
-                "mode": "sample_around_primary_orientation",
-                "values": {"primary_orientation": [0, 1, 0]}
-            }
+            {"mode": "use_predefined", "values": {"orientations": [or1, or2, ...]}}
+            {"mode": "sample_pairwise_angles", "values": {}}
+            {"mode": "sample_around_primary_orientation", "values": {...}}
 
     """
 
@@ -196,7 +187,7 @@ class OrientationManager(OrientationManagerBase):
 
         # Create trunks in each interval
         orientations_i = []
-        for phi_interval, i_n_trees in zip(phi_intervals, interval_n_trees):
+        for phi_interval, i_n_trees in zip(phi_intervals, interval_n_trees, strict=False):
             phis, thetas = trunk_to_spherical_angles(
                 sample.trunk_angles(tree_type_distrs, i_n_trees, self._rng),
                 sample.azimuth_angles(tree_type_distrs, i_n_trees, self._rng),
@@ -241,7 +232,7 @@ class OrientationManager(OrientationManagerBase):
             stds = stds if isinstance(stds, list) else [stds]
 
             thetas = []
-            for mean, std in zip(means, stds):
+            for mean, std in zip(means, stds, strict=False):
                 if mean == 0:
                     if std > 0:
                         thetas.append(np.clip(self._rng.exponential(std), 0, np.pi))
@@ -503,7 +494,6 @@ def spherical_angles_to_pia_orientations(phis, thetas, y_rotation=None):
     Returns:
         numpy.ndarray: The orientation vectors where each row corresponds to a phi-theta pair.
     """
-
     vector = np.column_stack(
         (np.cos(phis) * np.sin(thetas), np.cos(thetas), np.sin(phis) * np.sin(thetas))
     )
@@ -603,7 +593,10 @@ def _fit_single_3d_angles(data, neurite_type, morph_class, fit_params=None):
                 bounds=_fit_params[morph_class][neurite_type]["bounds"],
             )[0].tolist()
         except RuntimeError:  # pragma: no cover
-            warnings.warn("Cannot fit some trunk angles, we fallback to flat distribution")
+            warnings.warn(
+                "Cannot fit some trunk angles, we fallback to flat distribution",
+                stacklevel=2,
+            )
             form = "flat"
             popt = []
     else:

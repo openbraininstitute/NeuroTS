@@ -8,11 +8,11 @@
 # pylint: disable=protected-access
 import json
 import os
+from unittest.mock import patch
 
 import morphio
 import numpy as np
 import pytest
-from mock import patch
 from numpy.testing import assert_allclose
 from numpy.testing import assert_almost_equal
 from numpy.testing import assert_array_almost_equal
@@ -438,7 +438,7 @@ def test_soma_grower():
 
     assert_array_almost_equal(grower.soma.points, expected.soma.points)
     assert_array_almost_equal(grower.root_sections[0].points, expected.root_sections[0].points)
-    for sec_actual, sec_expected in zip(grower.iter(), expected.iter()):
+    for sec_actual, sec_expected in zip(grower.iter(), expected.iter(), strict=False):
         assert_array_almost_equal(sec_actual.points, sec_expected.points)
 
 

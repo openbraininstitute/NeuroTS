@@ -255,9 +255,9 @@ class NeuronGrower:
         """
         # pylint: disable=too-many-locals
         if isinstance(orientation, list):  # Gets major orientations externally
-            assert np.all(
-                np.linalg.norm(orientation, axis=1) > 0
-            ), "Orientations should have non-zero lengths"
+            assert np.all(np.linalg.norm(orientation, axis=1) > 0), (
+                "Orientations should have non-zero lengths"
+            )
             if params.get("trunk_absolute_orientation", False):
                 if len(orientation) == 1:
                     orientation = np.asarray(orientation[0], dtype=np.float64)
@@ -293,7 +293,7 @@ class NeuronGrower:
 
             # Create trunks in each interval
             orientations_i = []
-            for phi_interval, i_n_trees in zip(phi_intervals, interval_n_trees):
+            for phi_interval, i_n_trees in zip(phi_intervals, interval_n_trees, strict=False):
                 phis, thetas = _oris.trunk_to_spherical_angles(
                     sample.trunk_angles(distr, i_n_trees, self._rng),
                     sample.azimuth_angles(distr, i_n_trees, self._rng),

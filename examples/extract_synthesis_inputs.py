@@ -40,11 +40,11 @@ def run(output_dir, data_dir):
         json.dump(params, f, sort_keys=True, indent=2)
 
     # Re-load data from saved distributions
-    with open(output_dir / "test_distr.json", "r", encoding="utf-8") as F:
+    with open(output_dir / "test_distr.json", encoding="utf-8") as F:
         distr = json.load(F)
 
     # Re-load data from saved parameters
-    with open(output_dir / "test_params.json", "r", encoding="utf-8") as F:
+    with open(output_dir / "test_params.json", encoding="utf-8") as F:
         params = json.load(F)
 
     # Initialize a neuron

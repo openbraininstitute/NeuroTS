@@ -26,7 +26,7 @@ def run(output_dir, data_dir):
     )
 
     # Load default parameters dictionary
-    with open(data_dir / "bio_params.json", "r", encoding="utf-8") as F:
+    with open(data_dir / "bio_params.json", encoding="utf-8") as F:
         params = json.load(F)
 
     # Set the diameter method

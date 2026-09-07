@@ -182,7 +182,7 @@ class SomaGrower:
             x = self.soma.radius * np.sin(angles) + self.soma.center[0]
             y = self.soma.radius * np.cos(angles) + self.soma.center[1]
             z = np.full_like(angles, self.soma.center[2])
-            points_to_interpolate = points + [[i, j, k] for i, j, k in zip(x, y, z)]
+            points_to_interpolate = points + [[i, j, k] for i, j, k in zip(x, y, z, strict=False)]
 
         # a convex hull from 2D points is guaranteed to be ordered
         xy_points = np.asarray(points_to_interpolate)[:, :2]

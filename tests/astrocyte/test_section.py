@@ -8,9 +8,9 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=protected-access
 import itertools
+from unittest.mock import Mock
 
 import numpy as np
-from mock import Mock
 from numpy import testing as npt
 
 from neurots.astrocyte.section import SectionSpatialGrower

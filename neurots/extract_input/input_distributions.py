@@ -82,7 +82,7 @@ def distributions(
         input_distributions["diameter"] = from_diameter.model(morphology)
         input_distributions["diameter"]["method"] = diameter_model
 
-    elif hasattr(diameter_model, "__call__"):
+    elif callable(diameter_model):
         input_distributions["diameter"] = diameter_model(morphology)
         input_distributions["diameter"]["method"] = "external"
     elif (

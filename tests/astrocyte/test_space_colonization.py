@@ -7,10 +7,10 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=protected-access
 import itertools
+from unittest.mock import Mock
+from unittest.mock import patch
 
 import numpy as np
-from mock import Mock
-from mock import patch
 from numpy import testing as npt
 
 from neurots.astrocyte import space_colonization as tested

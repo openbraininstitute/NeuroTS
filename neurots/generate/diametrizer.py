@@ -426,7 +426,7 @@ def build(
                 f"'{diam_method}' is not in {list(diam_methods.keys())}"
             ) from exc
 
-    elif not hasattr(diam_method, "__call__"):
+    elif not callable(diam_method):
         raise ValueError(f"Diameter method not understood, we got {diam_method}")
 
     for tree_type in neurite_types:
